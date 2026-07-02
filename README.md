@@ -1,12 +1,12 @@
 # MathGlyph Pages
 
-Minimal synthetic page generator for math-heavy document pages. It samples handwritten formula strokes from MathWriting InkML, renders them onto synthetic paper pages, and writes page images with region metadata.
+Minimal synthetic page generator for math-heavy document pages. It samples handwritten formula strokes from [MathWriting InkML](https://arxiv.org/html/2404.10690), renders them onto synthetic paper pages, and writes page images with region metadata.
 
 ## Datasets
 
 The generator is driven by:
 
-- MathWriting 2024 InkML: formula strokes and formula labels.
+- [MathWriting 2024 InkML](https://arxiv.org/html/2404.10690): formula strokes and formula labels.
 - Built-in small text banks: printed instructions, handwritten notes, annotations, table cell values, and graph captions.
 - Optional plain-text corpora supplied by the caller for page text or annotations.
 
