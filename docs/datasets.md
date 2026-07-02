@@ -53,19 +53,6 @@ Optional plain-text corpus files may be passed in JSON config through:
 
 Each file should be UTF-8 with one candidate line per row. Blank lines are ignored.
 
-## Explicit Non-Goals
-
-This separate repo does not depend on or bundle:
-
-- RUKOPYS gold/silver metadata,
-- local letter-crop handwriting datasets,
-- Hugging Face text datasets,
-- Wikisource corpora,
-- model checkpoints,
-- training or inference pipelines.
-
-Those sources can be used downstream, but they are intentionally outside this minimal generator.
-
 ## Output Schema
 
 `metadata.jsonl` contains one JSON object per generated page:
