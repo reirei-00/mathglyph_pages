@@ -65,6 +65,7 @@ Density is controlled with:
 - `--profile`: `formula_sparse`, `formula_dense`, `formula_table`, `formula_matrix_table`, `formula_text`, `formula_graph`, `formula_scattered`, `formula_margin_work`, or `mixed`.
 - `--formulas-per-page-min` and `--formulas-per-page-max`.
 - `--formula-target-height-min` and `--formula-target-height-max`.
+- `--no-title` removes the title/instruction block when you need packed math with less free space.
 - `--text-style`: `mixed`, `printed`, or `handwritten` for page titles, instructions, and body text.
 - page size and seed.
 

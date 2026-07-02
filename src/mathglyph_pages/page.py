@@ -381,8 +381,13 @@ def _resolve_profile(config: MathPageConfig, rng: random.Random, index: int, cyc
         raise ValueError(f"Unknown profile {config.profile!r}. Choose one of: {', '.join(sorted(BUILTIN_PROFILES))}, mixed")
     else:
         profile = BUILTIN_PROFILES[config.profile]
+    updates: dict[str, Any] = {}
+    if config.include_title is not None:
+        updates["include_title"] = config.include_title
     if config.include_annotations is not None:
-        return replace(profile, include_annotations=config.include_annotations)
+        updates["include_annotations"] = config.include_annotations
+    if updates:
+        return replace(profile, **updates)
     return profile
 
 

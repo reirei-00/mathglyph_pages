@@ -176,6 +176,7 @@ class MathPageConfig:
     printed_corpus_path: Path | None = None
     handwritten_corpus_path: Path | None = None
     annotation_corpus_path: Path | None = None
+    include_title: bool | None = None
     include_annotations: bool | None = None
     include_contact_sheet: bool = True
     yellow_strength: float | None = None

@@ -46,6 +46,7 @@ The generator can add non-formula page content. By default, those regions come f
 - graph captions.
 
 `text_style` controls whether page titles, instructions, and body text are rendered as `mixed` profile defaults, `printed`, or `handwritten`.
+`include_title` can disable title/instruction blocks for packed pages with less free space.
 
 Optional plain-text corpus files may be passed in JSON config through:
 

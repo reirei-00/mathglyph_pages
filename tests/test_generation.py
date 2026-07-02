@@ -126,3 +126,29 @@ def test_generation_can_render_page_text_as_handwritten(tmp_path: Path) -> None:
 
     summary = json.loads(result.summary_path.read_text(encoding="utf-8"))
     assert summary["config"]["text_style"] == "handwritten"
+
+
+def test_generation_can_disable_title_for_packed_pages(tmp_path: Path) -> None:
+    result = generate_pages(
+        MathPageConfig(
+            mathwriting_root=FIXTURE_ROOT,
+            out_dir=tmp_path / "packed",
+            num_pages=1,
+            profile="formula_dense",
+            visual_style="clean",
+            formulas_per_page_min=18,
+            formulas_per_page_max=18,
+            formula_target_height_min=48,
+            formula_target_height_max=70,
+            include_title=False,
+            include_annotations=False,
+            max_scan_per_split=None,
+        )
+    )
+
+    row = _read_jsonl(result.metadata_path)[0]
+    assert len([region for region in row["regions"] if region["type"] == "formula"]) == 18
+    assert not any(region.get("role") in {"title", "instruction"} for region in row["regions"])
+
+    first_formula_top = min(region["bbox"][1] for region in row["regions"] if region["type"] == "formula")
+    assert first_formula_top < 180

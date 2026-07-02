@@ -39,6 +39,7 @@ def _build_config(args: argparse.Namespace) -> MathPageConfig:
         "printed_corpus_path",
         "handwritten_corpus_path",
         "annotation_corpus_path",
+        "include_title",
         "include_annotations",
         "yellow_strength",
         "rotation_max_degrees",
@@ -86,6 +87,13 @@ def _add_generate_parser(subparsers: argparse._SubParsersAction[argparse.Argumen
     parser.add_argument("--printed-corpus-path", type=Path)
     parser.add_argument("--handwritten-corpus-path", type=Path)
     parser.add_argument("--annotation-corpus-path", type=Path)
+    parser.add_argument(
+        "--title",
+        dest="include_title",
+        action=argparse.BooleanOptionalAction,
+        default=None,
+        help="Enable or disable page title/instruction blocks.",
+    )
     parser.add_argument(
         "--annotations",
         dest="include_annotations",
