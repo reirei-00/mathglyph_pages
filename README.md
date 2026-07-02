@@ -71,6 +71,7 @@ Distortions are controlled with:
 
 - `--visual-style`: `clean`, `noisy_scan`, `aged_scan`, `wavy_scan`, `photo_distorted`, or `mixed`.
 - JSON config fields such as `yellow_strength`, `rotation_max_degrees`, `edge_shadow`, `waviness_px`, `blur_radius`, `noise_strength`, and `perspective_strength`.
+- `--no-annotations` disables synthetic teacher-note annotation regions when cleaner pages are needed.
 
 Example JSON configs are in [configs](configs).
 

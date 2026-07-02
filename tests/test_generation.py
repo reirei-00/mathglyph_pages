@@ -77,3 +77,22 @@ def test_generation_schema_contains_mathwriting_provenance(tmp_path: Path) -> No
     summary = json.loads(result.summary_path.read_text(encoding="utf-8"))
     assert summary["datasets"]["primary"] == "MathWriting 2024 InkML"
     assert summary["region_type_counts"]["formula"] >= 4
+
+
+def test_generation_can_disable_annotations(tmp_path: Path) -> None:
+    result = generate_pages(
+        MathPageConfig(
+            mathwriting_root=FIXTURE_ROOT,
+            out_dir=tmp_path / "no_annotations",
+            num_pages=2,
+            profile="formula_dense",
+            visual_style="clean",
+            formulas_per_page_min=5,
+            formulas_per_page_max=5,
+            include_annotations=False,
+            max_scan_per_split=None,
+        )
+    )
+
+    rows = _read_jsonl(result.metadata_path)
+    assert not any(region["type"] == "annotation" for row in rows for region in row["regions"])

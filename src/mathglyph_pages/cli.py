@@ -38,6 +38,7 @@ def _build_config(args: argparse.Namespace) -> MathPageConfig:
         "printed_corpus_path",
         "handwritten_corpus_path",
         "annotation_corpus_path",
+        "include_annotations",
         "yellow_strength",
         "rotation_max_degrees",
         "edge_shadow",
@@ -79,6 +80,13 @@ def _add_generate_parser(subparsers: argparse._SubParsersAction[argparse.Argumen
     parser.add_argument("--printed-corpus-path", type=Path)
     parser.add_argument("--handwritten-corpus-path", type=Path)
     parser.add_argument("--annotation-corpus-path", type=Path)
+    parser.add_argument(
+        "--annotations",
+        dest="include_annotations",
+        action=argparse.BooleanOptionalAction,
+        default=None,
+        help="Enable or disable synthetic annotation/teacher-note regions.",
+    )
     parser.add_argument("--yellow-strength", type=float)
     parser.add_argument("--rotation-max-degrees", type=float)
     parser.add_argument("--edge-shadow", action="store_true", default=None)
@@ -117,4 +125,3 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

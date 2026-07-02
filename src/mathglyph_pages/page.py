@@ -361,10 +361,14 @@ def _draw_text_block(
 
 def _resolve_profile(config: MathPageConfig, rng: random.Random, index: int, cycle: Sequence[PageProfile]) -> PageProfile:
     if config.profile == "mixed":
-        return cycle[index % len(cycle)]
-    if config.profile not in BUILTIN_PROFILES:
+        profile = cycle[index % len(cycle)]
+    elif config.profile not in BUILTIN_PROFILES:
         raise ValueError(f"Unknown profile {config.profile!r}. Choose one of: {', '.join(sorted(BUILTIN_PROFILES))}, mixed")
-    return BUILTIN_PROFILES[config.profile]
+    else:
+        profile = BUILTIN_PROFILES[config.profile]
+    if config.include_annotations is not None:
+        return replace(profile, include_annotations=config.include_annotations)
+    return profile
 
 
 def _style_with_overrides(config: MathPageConfig, style: VisualStyle) -> VisualStyle:
