@@ -1,0 +1,12 @@
+{
+  "mathwriting_root": "tests/fixtures/tiny_mathwriting",
+  "out_dir": "out/noisy_scan",
+  "num_pages": 4,
+  "splits": ["train", "synthetic"],
+  "seed": 20260703,
+  "profile": "formula_text",
+  "visual_style": "noisy_scan",
+  "noise_strength": 12,
+  "blur_radius": 0.18
+}
+

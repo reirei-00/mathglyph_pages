@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mathglyph-pages"
+version = "0.1.0"
+description = "Minimal generator for math glyph document pages driven by MathWriting InkML."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "MathGlyph Pages contributors" }]
+dependencies = [
+  "Pillow>=10.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "nbformat>=5.10",
+  "nbclient>=0.10",
+  "ipykernel>=6.29",
+]
+
+[project.scripts]
+mathglyph-pages = "mathglyph_pages.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

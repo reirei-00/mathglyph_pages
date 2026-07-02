@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ink xmlns="http://www.w3.org/2003/InkML">
+  <annotation type="sampleId">linear-1</annotation>
+  <annotation type="label">y = x + 1</annotation>
+  <annotation type="normalizedLabel">y=x+1</annotation>
+  <trace id="0">0 20, 15 5, 30 20, 45 5, 60 20</trace>
+  <trace id="1">76 12, 106 12</trace>
+  <trace id="2">126 4, 126 24, 145 24</trace>
+</ink>
+

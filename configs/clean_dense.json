@@ -1,0 +1,14 @@
+{
+  "mathwriting_root": "tests/fixtures/tiny_mathwriting",
+  "out_dir": "out/clean_dense",
+  "num_pages": 4,
+  "splits": ["train", "synthetic"],
+  "seed": 20260702,
+  "profile": "formula_dense",
+  "visual_style": "clean",
+  "formulas_per_page_min": 12,
+  "formulas_per_page_max": 16,
+  "formula_target_height_min": 64,
+  "formula_target_height_max": 92
+}
+

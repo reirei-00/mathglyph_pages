@@ -1,0 +1,12 @@
+{
+  "mathwriting_root": "tests/fixtures/tiny_mathwriting",
+  "out_dir": "out/matrix_table",
+  "num_pages": 3,
+  "splits": ["train", "synthetic"],
+  "seed": 20260705,
+  "profile": "formula_matrix_table",
+  "visual_style": "aged_scan",
+  "formulas_per_page_min": 7,
+  "formulas_per_page_max": 10
+}
+

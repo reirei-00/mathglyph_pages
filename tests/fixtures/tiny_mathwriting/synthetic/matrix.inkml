@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ink xmlns="http://www.w3.org/2003/InkML">
+  <annotation type="sampleId">matrix-1</annotation>
+  <annotation type="label">\begin{bmatrix}1&amp;0\\0&amp;1\end{bmatrix}</annotation>
+  <annotation type="normalizedLabel">\begin{bmatrix}1&amp;0\\0&amp;1\end{bmatrix}</annotation>
+  <trace id="0">0 0, 0 70</trace>
+  <trace id="1">8 10, 8 30</trace>
+  <trace id="2">36 10, 52 10</trace>
+  <trace id="3">8 48, 28 48</trace>
+  <trace id="4">45 42, 45 62</trace>
+  <trace id="5">64 0, 64 70</trace>
+</ink>
+

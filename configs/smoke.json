@@ -1,0 +1,11 @@
+{
+  "mathwriting_root": "tests/fixtures/tiny_mathwriting",
+  "out_dir": "out/smoke",
+  "num_pages": 2,
+  "splits": ["train", "synthetic"],
+  "seed": 1701,
+  "profile": "mixed",
+  "visual_style": "clean",
+  "max_scan_per_split": 20
+}
+

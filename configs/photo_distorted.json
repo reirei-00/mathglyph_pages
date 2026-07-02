@@ -1,0 +1,13 @@
+{
+  "mathwriting_root": "tests/fixtures/tiny_mathwriting",
+  "out_dir": "out/photo_distorted",
+  "num_pages": 4,
+  "splits": ["train", "synthetic"],
+  "seed": 20260704,
+  "profile": "formula_scattered",
+  "visual_style": "photo_distorted",
+  "rotation_max_degrees": 3.5,
+  "perspective_strength": 0.055,
+  "edge_shadow": true
+}
+
