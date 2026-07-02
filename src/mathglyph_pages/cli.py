@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from .config import BUILTIN_PROFILES, BUILTIN_STYLES, MathPageConfig, config_from_mapping, parse_splits
+from .config import BUILTIN_PROFILES, BUILTIN_STYLES, TEXT_STYLES, MathPageConfig, config_from_mapping, parse_splits
 from .page import generate_pages
 
 
@@ -27,6 +27,7 @@ def _build_config(args: argparse.Namespace) -> MathPageConfig:
         "page_width",
         "page_height",
         "profile",
+        "text_style",
         "visual_style",
         "formulas_per_page_min",
         "formulas_per_page_max",
@@ -69,6 +70,11 @@ def _add_generate_parser(subparsers: argparse._SubParsersAction[argparse.Argumen
     parser.add_argument("--page-width", type=int)
     parser.add_argument("--page-height", type=int)
     parser.add_argument("--profile", choices=("mixed", *sorted(BUILTIN_PROFILES)))
+    parser.add_argument(
+        "--text-style",
+        choices=TEXT_STYLES,
+        help="Render page title/body text as mixed profile default, printed, or handwritten.",
+    )
     parser.add_argument("--visual-style", choices=("mixed", *sorted(BUILTIN_STYLES)))
     parser.add_argument("--formulas-per-page-min", type=int)
     parser.add_argument("--formulas-per-page-max", type=int)

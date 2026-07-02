@@ -10,6 +10,8 @@ DEFAULT_DROP_COMMANDS = (
     r"\begin{aligned}",
 )
 
+TEXT_STYLES = ("mixed", "printed", "handwritten")
+
 
 @dataclass(frozen=True)
 class PageProfile:
@@ -161,6 +163,7 @@ class MathPageConfig:
     page_width: int = 1240
     page_height: int = 1754
     profile: str = "mixed"
+    text_style: str = "mixed"
     visual_style: str = "mixed"
     formulas_per_page_min: int | None = None
     formulas_per_page_max: int | None = None
@@ -223,6 +226,10 @@ def config_from_mapping(data: Mapping[str, Any]) -> MathPageConfig:
             values[key] = Path(values[key])
     if "drop_commands" in values:
         values["drop_commands"] = tuple(str(item) for item in values["drop_commands"])
+    if values.get("text_style") is not None:
+        values["text_style"] = str(values["text_style"])
+    if values.get("text_style", "mixed") not in TEXT_STYLES:
+        raise ValueError(f"Unknown text_style {values['text_style']!r}. Choose one of: {', '.join(TEXT_STYLES)}")
     return MathPageConfig(**values)
 
 

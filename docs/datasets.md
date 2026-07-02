@@ -45,6 +45,8 @@ The generator can add non-formula page content. By default, those regions come f
 - table cell values,
 - graph captions.
 
+`text_style` controls whether page titles, instructions, and body text are rendered as `mixed` profile defaults, `printed`, or `handwritten`.
+
 Optional plain-text corpus files may be passed in JSON config through:
 
 - `printed_corpus_path`

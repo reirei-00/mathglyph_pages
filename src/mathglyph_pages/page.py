@@ -105,6 +105,19 @@ def _add_text_region(
     return bbox
 
 
+def _resolve_text_rendering(config: MathPageConfig, default_kind: str) -> tuple[str, str, tuple[int, int, int, int]]:
+    if config.text_style == "mixed":
+        kind = default_kind
+    elif config.text_style in {"printed", "handwritten"}:
+        kind = config.text_style
+    else:
+        raise ValueError("text_style must be one of: mixed, printed, handwritten")
+
+    if kind == "handwritten":
+        return "handwritten", "handwritten", (23, 49, 118, 226)
+    return "printed", "printed", (30, 32, 36, 232)
+
+
 def _draw_annotation(
     page: Image.Image,
     regions: list[dict[str, Any]],
@@ -323,6 +336,7 @@ def _draw_graph(
 
 
 def _draw_text_block(
+    config: MathPageConfig,
     page: Image.Image,
     regions: list[dict[str, Any]],
     rng: random.Random,
@@ -332,6 +346,7 @@ def _draw_text_block(
     handwritten_lines: Sequence[str],
 ) -> None:
     x, y, width, _height = box
+    body_kind, body_rtype, body_color = _resolve_text_rendering(config, "printed")
     for index in range(2):
         text = rng.choice(printed_lines)
         _add_text_region(
@@ -341,9 +356,9 @@ def _draw_text_block(
             text=text,
             xy=(x, y + index * 34),
             size=21,
-            kind="printed",
-            rtype="printed",
-            color=(30, 32, 36, 232),
+            kind=body_kind,
+            rtype=body_rtype,
+            color=body_color,
             extra={"role": "body_text"},
         )
     _add_text_region(
@@ -419,6 +434,7 @@ def _build_page(
     top = 120
 
     if profile.include_title:
+        title_kind, title_rtype, title_color = _resolve_text_rendering(config, "printed")
         _add_text_region(
             page,
             regions,
@@ -426,9 +442,9 @@ def _build_page(
             text=rng.choice(PRINTED_HEADERS),
             xy=(margin, 72),
             size=rng.randint(32, 40),
-            kind="printed",
-            rtype="printed",
-            color=(30, 32, 36, 232),
+            kind=title_kind,
+            rtype=title_rtype,
+            color=title_color,
             extra={"role": "title"},
         )
         _add_text_region(
@@ -438,9 +454,9 @@ def _build_page(
             text=rng.choice(PRINTED_INSTRUCTIONS),
             xy=(margin, 128),
             size=rng.randint(22, 27),
-            kind="printed",
-            rtype="printed",
-            color=(30, 32, 36, 225),
+            kind=title_kind,
+            rtype=title_rtype,
+            color=title_color,
             extra={"role": "instruction"},
         )
         _add_text_region(
@@ -535,7 +551,15 @@ def _build_page(
             )
 
     if text_box is not None:
-        _draw_text_block(page, regions, rng, box=text_box, printed_lines=printed_lines, handwritten_lines=handwritten_lines)
+        _draw_text_block(
+            config,
+            page,
+            regions,
+            rng,
+            box=text_box,
+            printed_lines=printed_lines,
+            handwritten_lines=handwritten_lines,
+        )
     if graph_box is not None:
         _draw_graph(page, regions, rng, box=graph_box)
     if table_box is not None:

@@ -96,3 +96,33 @@ def test_generation_can_disable_annotations(tmp_path: Path) -> None:
 
     rows = _read_jsonl(result.metadata_path)
     assert not any(region["type"] == "annotation" for row in rows for region in row["regions"])
+
+
+def test_generation_can_render_page_text_as_handwritten(tmp_path: Path) -> None:
+    result = generate_pages(
+        MathPageConfig(
+            mathwriting_root=FIXTURE_ROOT,
+            out_dir=tmp_path / "handwritten_text",
+            num_pages=1,
+            profile="formula_text",
+            visual_style="clean",
+            formulas_per_page_min=3,
+            formulas_per_page_max=3,
+            include_annotations=False,
+            text_style="handwritten",
+            max_scan_per_split=None,
+        )
+    )
+
+    row = _read_jsonl(result.metadata_path)[0]
+    page_text_regions = [
+        region
+        for region in row["regions"]
+        if region.get("role") in {"title", "instruction", "body_text"}
+    ]
+    assert page_text_regions
+    assert {region["type"] for region in page_text_regions} == {"handwritten"}
+    assert not any(region["type"] == "printed" for region in row["regions"])
+
+    summary = json.loads(result.summary_path.read_text(encoding="utf-8"))
+    assert summary["config"]["text_style"] == "handwritten"
