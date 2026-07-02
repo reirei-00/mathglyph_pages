@@ -76,7 +76,7 @@ Example JSON configs are in [configs](configs).
 
 ## Notebook
 
-Run [notebooks/generation_examples.ipynb](notebooks/generation_examples.ipynb). It uses the tiny fixture dataset by default, so it can execute without downloading MathWriting. Replace `MATHWRITING_ROOT` with the real MathWriting path for useful data generation.
+Open [notebooks/generation_examples.ipynb](notebooks/generation_examples.ipynb) locally or in [Google Colab](https://colab.research.google.com/github/reirei-00/mathglyph_pages/blob/main/notebooks/generation_examples.ipynb). It installs the package when needed and creates a tiny fixture dataset by default, so it can execute without downloading MathWriting. Replace `MATHWRITING_ROOT` with the real MathWriting path for useful data generation.
 
 ## Test
 
