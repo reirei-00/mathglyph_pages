@@ -2,6 +2,10 @@
 
 Minimal synthetic page generator for math-heavy document pages. It samples handwritten formula strokes from [MathWriting InkML](https://arxiv.org/html/2404.10690), renders them onto synthetic paper pages, and writes page images with region metadata.
 
+## Links
+
+- Hugging Face dataset: [dfs-team/mathglyph-pages](https://huggingface.co/datasets/dfs-team/mathglyph-pages)
+
 ## Datasets
 
 The generator is driven by:
